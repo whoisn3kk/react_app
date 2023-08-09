@@ -1,19 +1,21 @@
+import React from 'react';
 import styles from './Card.module.scss'
 
 console.log(styles)
 
 function Card(props) {
-    const onClickPlus = () => {
-        alert(props.title)
-    }
-
+  const [isAdded, setIsAdded] = React.useState(false)
+  
+  const onClickPlus = () => {
+    setIsAdded(!isAdded)
+  }
   return (
     <div className={styles.card + " d-flex align-center flex-column"} >
       <div>
-        <div className={styles.favorite}>
+        <div className={styles.favorite} onClick={props.onFavorite}>
           <img src="/img/heart-empty.svg" alt="" />
         </div>
-        <img width={133} height={112} src={props.imgUrl} alt="" />
+        <img width={133} height={112} src={props.imageUrl} alt="" />
         <h5 className="pt-15 pb-15">{props.title}</h5>
       </div>
       <div className={styles.card__bottom + " d-flex justify-between align-center"}>
@@ -21,9 +23,7 @@ function Card(props) {
           <p>Цена:</p>
           <b>{props.price} uah.</b>
         </div>
-        <button onClick={() => onClickPlus()}>
-          <img width={11} height={11} src="/img/plus.svg" alt="" />
-        </button>
+        <img onClick={onClickPlus} src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg" } alt="" className='cu-p'/>
       </div>
     </div>
   );
