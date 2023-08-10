@@ -33,12 +33,24 @@ header {
   border: 1px solid #F3F3F3;
   border-radius: 10px;
   padding: 0 15px;
+  position: relative;
+
+  .clear {
+    position: absolute;
+    right: 18px;
+    height: 18px;
+    width: 18px;
+    top: calc(50% - 9px);
+  }
 
   input {
     border: none;
     padding: 13px;
     font-size: 16px;
     width: 200px;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -153,4 +165,26 @@ header {
   &:hover {
     background: lighten($color: #9DD558, $amount: 5%);
   }
+}
+
+.cartEmpty {
+  .greenBtn {
+    position: relative;
+
+    img {
+      transform: rotateY(180deg) translateX(0);
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      transition: transform 0.15s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        transform: rotateY(180deg) translateX(5px);
+      }
+    }
+  
+  }
+  
 }
