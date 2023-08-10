@@ -1,36 +1,26 @@
-function Drawer(props) {
+function Drawer({onClose, items = []}) {
   return (
     <div className="overlay">
       <div className="drawer d-flex flex-column">
         <h2 className="mb-40 d-flex justify-between">
           Корзина
-          <img className="cu-p" onClick={props.onClose} src="/img/btn-remove.svg" alt="remove" />
+          <img className="cu-p" onClick={onClose} src="/img/btn-remove.svg" alt="remove" />
         </h2>
 
         <div className="items flex">
-          <div className="cartItem d-flex align-center mb-20">
-            <div
-              style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }}
-              className="cartItemImg"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
-              <b>6 999 uah.</b>
+          {items.map((obj) => (
+            <div className="cartItem d-flex align-center mb-20">
+              <div
+                style={{ backgroundImage: `url(${obj.imageUrl})` }}
+                className="cartItemImg"
+              ></div>
+              <div className="mr-20 flex">
+                <p className="mb-5">{obj.title}</p>
+                <b>{obj.price} uah.</b>
+              </div>
+              <img className="removeBtn" src="/img/btn-remove.svg" alt="remove" />
             </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="remove" />
-          </div>
-
-          <div className="cartItem d-flex align-center mb-20">
-            <div
-              style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }}
-              className="cartItemImg"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
-              <b>6 999 uah.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="remove" />
-          </div>
+          ))}
         </div>
         <div className="cartTotalBlock">
           <ul>
